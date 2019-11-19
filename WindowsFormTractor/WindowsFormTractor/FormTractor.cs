@@ -12,7 +12,8 @@ namespace WindowsFormTractor
 {
 	public partial class FormTractor : Form
 	{
-		private TractorLoader tractor;
+		private ITransport tractor;
+		
 		public FormTractor()
 		{
 			InitializeComponent();
@@ -24,23 +25,15 @@ namespace WindowsFormTractor
 			tractor.DrawTractor(gr);
 			pictureBoxTractor.Image = bmp;
 		}
-		/// <summary>
-		/// Обработка нажатия кнопки "Создать"
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void buttonCreate_Click(object sender, EventArgs e)
+
+		private void ButtonCreateDop_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			tractor = new TractorLoader(rnd.Next(100, 300), rnd.Next(2700, 3000), Color.Black, Color.Black, true, true, true);
-			tractor.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTractor.Width, pictureBoxTractor.Height);
+			tractor = new TractorLoader(rnd.Next(50, 100), rnd.Next(1000, 2000), Color.Yellow, Color.Black, true, true, true);
+			tractor.SetPosition(rnd.Next(18, 100), rnd.Next(65, 100), pictureBoxTractor.Width, pictureBoxTractor.Height);
+
 			Draw();
 		}
-		/// <summary>
-		/// Обработка нажатия кнопок управления
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
 		private void buttonMove_Click(object sender, EventArgs e)
 		{
 			//получаем имя кнопки
@@ -60,6 +53,14 @@ namespace WindowsFormTractor
 					tractor.MoveTransport(Direction.Right);
 					break;
 			}
+			Draw();
+		}
+
+		private void ButtonCreate_Click(object sender, EventArgs e)
+		{
+			Random rnd = new Random();
+			tractor = new Tractor(rnd.Next(50, 100), rnd.Next(1000, 2000), Color.Yellow);
+			tractor.SetPosition(rnd.Next(18, 100), rnd.Next(65, 100), pictureBoxTractor.Width, pictureBoxTractor.Height);
 			Draw();
 		}
 	}
