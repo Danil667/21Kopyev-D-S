@@ -59,7 +59,8 @@ namespace WindowsFormTractor
 		
 		public bool Lantern { private set; get; }
 
-		public TractorLoader(int maxSpeed, float weight, Color mainColor, Color dopColor, bool rearbucket, bool lantern, bool frontbucket)
+		public TractorRinks.TractorRinksCount Count { protected set; get; }
+		public TractorLoader(int maxSpeed, float weight, Color mainColor, Color dopColor, bool rearbucket, bool lantern, bool frontbucket, TractorRinks.TractorRinksCount tractorrinks)
 		{
 			MaxSpeed = maxSpeed;
 			Weight = weight;
@@ -68,7 +69,7 @@ namespace WindowsFormTractor
 			RearBucket = rearbucket;
 			Lantern = lantern;
 			FrontBucket = frontbucket;
-		
+			Count = tractorrinks;
 		}
 		/// <summary>
 		/// Установка позиции автомобиля
@@ -164,7 +165,9 @@ namespace WindowsFormTractor
 				g.DrawLine(pen, _startPosX + 20, _startPosY - 14, _startPosX + 20, _startPosY - 20);
 				g.FillEllipse(brBlack, _startPosX + 16, _startPosY - 25, 5, 5);
 			}
-
+			TractorRinks tractor = new TractorRinks(Count,
+			MainColor, DopColor, _startPosX, _startPosY);
+			tractor.DrawRinks(g);
 		}
 	}
 }
