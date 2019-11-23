@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace WindowsFormTractor
 {
-
 	public enum Direction
 	{
 		Up,
@@ -14,5 +13,4 @@ namespace WindowsFormTractor
 		Left,
 		Right
 	}
-
 }

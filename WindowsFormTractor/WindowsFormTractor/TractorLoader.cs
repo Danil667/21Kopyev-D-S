@@ -9,54 +9,30 @@ namespace WindowsFormTractor
 {
 	public class TractorLoader
 	{
-		/// <summary>
-		/// Левая координата отрисовки автомобиля
-		/// </summary>
 		private float _startPosX;
-		/// <summary>
-		/// Правая кооридната отрисовки автомобиля
-		/// </summary>
+		
 		private float _startPosY;
-		/// <summary>
-		/// Ширина окна отрисовки
-		/// </summary>
+		
 		private int _pictureWidth;
-		/// <summary>
-		/// Высота окна отрисовки
-		/// </summary>
+		
 		private int _pictureHeight;
-		/// <summary>
-		/// Ширина отрисовки автомобиля
-		/// </summary>
+	
 		private const int tractorWidth = 90;
-		/// <summary>
-		/// Ширина отрисовки автомобиля
-		/// </summary>
+	
 		private const int tractorHeight = 60;
-		/// <summary>
-		/// Максимальная скорость
-		/// </summary>
+		
 		public int MaxSpeed { private set; get; }
-		/// <summary>
-		/// Вес автомобиля
-		/// </summary>
+		
 		public float Weight { private set; get; }
-		/// <summary>
-		/// Основной цвет кузова
-		/// </summary>
+		
 		public Color MainColor { private set; get; }
-		/// <summary>
-		/// Дополнительный цвет
-		/// </summary>
+	
 		public Color DopColor { private set; get; }
-		/// <summary>
-		/// Признак наличия переднего спойлера
-		/// </summary>
+	
 		public bool RearBucket { private set; get; }
 
 		public bool FrontBucket { private set; get; }
 
-		
 		public bool Lantern { private set; get; }
 
 		public TractorLoader(int maxSpeed, float weight, Color mainColor, Color dopColor, bool rearbucket, bool lantern, bool frontbucket)
@@ -68,15 +44,8 @@ namespace WindowsFormTractor
 			RearBucket = rearbucket;
 			Lantern = lantern;
 			FrontBucket = frontbucket;
-		
 		}
-		/// <summary>
-		/// Установка позиции автомобиля
-		/// </summary>
-		/// <param name="x">Координата X</param>
-		/// <param name="y">Координата Y</param>
-		/// <param name="width">Ширина картинки</param>
-		/// <param name="height">Высота картинки</param>
+		
 		public void SetPosition(int x, int y, int width, int height)
 		{
 			_startPosX = x;
@@ -84,10 +53,7 @@ namespace WindowsFormTractor
 			_pictureWidth = width;
 			_pictureHeight = height;
 		}
-		/// <summary>
-		/// Изменение направления пермещения
-		/// </summary>
-		/// <param name="direction">Направление</param>
+	
 		public void MoveTransport(Direction direction)
 		{
 			float step = MaxSpeed * 100 / Weight;
@@ -99,21 +65,18 @@ namespace WindowsFormTractor
 						_startPosX += step;
 					}
 					break;
-				//влево
 				case Direction.Left:
 					if (_startPosX - step > 20)
 					{
 						_startPosX -= step;
 					}
 					break;
-				//вверх
 				case Direction.Up:
 					if (_startPosY - step > 25)
 					{
 						_startPosY -= step;
 					}
 					break;
-				//вниз
 				case Direction.Down:
 					if (_startPosY + step < _pictureHeight - tractorHeight)
 					{
@@ -137,10 +100,8 @@ namespace WindowsFormTractor
 			g.DrawEllipse(pen, _startPosX + 15, _startPosY + 13, 5, 5);
 			g.DrawEllipse(pen, _startPosX + 31, _startPosY + 13, 5, 5);
 			g.FillRectangle(brYell, _startPosX + 2, _startPosY - 4, 46, 16);
-
 			g.FillRectangle(brYell, _startPosX - 2, _startPosY + 2, 4, 10);
 			g.FillRectangle(brYell, _startPosX + 48, _startPosY + 2, 4, 10);
-
 			if (FrontBucket)
 			{
 				Pen pens = new Pen(MainColor);
@@ -158,13 +119,11 @@ namespace WindowsFormTractor
 				g.FillEllipse(brBlack, _startPosX + 65, _startPosY - 25, 12, 10);
 				g.FillRectangle(brBlack, _startPosX + 65, _startPosY - 20, 12, 5);
 			}
-
 			if (Lantern)
 			{
 				g.DrawLine(pen, _startPosX + 20, _startPosY - 14, _startPosX + 20, _startPosY - 20);
 				g.FillEllipse(brBlack, _startPosX + 16, _startPosY - 25, 5, 5);
 			}
-
 		}
 	}
 }

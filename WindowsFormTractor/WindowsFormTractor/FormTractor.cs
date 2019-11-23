@@ -13,6 +13,7 @@ namespace WindowsFormTractor
 	public partial class FormTractor : Form
 	{
 		private TractorLoader tractor;
+
 		public FormTractor()
 		{
 			InitializeComponent();
@@ -24,11 +25,7 @@ namespace WindowsFormTractor
 			tractor.DrawTractor(gr);
 			pictureBoxTractor.Image = bmp;
 		}
-		/// <summary>
-		/// Обработка нажатия кнопки "Создать"
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+
 		private void buttonCreate_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
@@ -36,11 +33,7 @@ namespace WindowsFormTractor
 			tractor.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTractor.Width, pictureBoxTractor.Height);
 			Draw();
 		}
-		/// <summary>
-		/// Обработка нажатия кнопок управления
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+
 		private void buttonMove_Click(object sender, EventArgs e)
 		{
 			//получаем имя кнопки
