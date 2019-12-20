@@ -10,31 +10,18 @@ namespace WindowsFormTractor
 	public class TractorLoader
 	{
 		private float _startPosX;
-		
 		private float _startPosY;
-		
 		private int _pictureWidth;
-		
 		private int _pictureHeight;
-	
 		private const int tractorWidth = 90;
-	
 		private const int tractorHeight = 60;
-		
 		public int MaxSpeed { private set; get; }
-		
 		public float Weight { private set; get; }
-		
 		public Color MainColor { private set; get; }
-	
 		public Color DopColor { private set; get; }
-	
 		public bool RearBucket { private set; get; }
-
 		public bool FrontBucket { private set; get; }
-
 		public bool Lantern { private set; get; }
-
 		public TractorLoader(int maxSpeed, float weight, Color mainColor, Color dopColor, bool rearbucket, bool lantern, bool frontbucket)
 		{
 			MaxSpeed = maxSpeed;
@@ -45,7 +32,6 @@ namespace WindowsFormTractor
 			Lantern = lantern;
 			FrontBucket = frontbucket;
 		}
-		
 		public void SetPosition(int x, int y, int width, int height)
 		{
 			_startPosX = x;
@@ -53,7 +39,6 @@ namespace WindowsFormTractor
 			_pictureWidth = width;
 			_pictureHeight = height;
 		}
-	
 		public void MoveTransport(Direction direction)
 		{
 			float step = MaxSpeed * 100 / Weight;
@@ -85,7 +70,6 @@ namespace WindowsFormTractor
 					break;
 			}
 		}
-	
 		public void DrawTractor(Graphics g)
 		{
 			Pen pen = new Pen(Color.Black);
