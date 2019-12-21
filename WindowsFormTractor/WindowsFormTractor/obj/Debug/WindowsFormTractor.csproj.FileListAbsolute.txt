@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\bin\Debug\WindowsFormTractor.exe.config
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\bin\Debug\WindowsFormTractor.exe
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\bin\Debug\WindowsFormTractor.pdb
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\obj\Debug\WindowsFormTractor.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\obj\Debug\WindowsFormTractor.FormTractor.resources
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\obj\Debug\WindowsFormTractor.Properties.Resources.resources
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\obj\Debug\WindowsFormTractor.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\obj\Debug\WindowsFormTractor.exe
+C:\Users\Admin\source\repos\Danil667\21Kopyev-D-S\WindowsFormTractor\WindowsFormTractor\obj\Debug\WindowsFormTractor.pdb
