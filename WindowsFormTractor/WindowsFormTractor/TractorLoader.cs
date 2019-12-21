@@ -10,7 +10,7 @@ namespace WindowsFormTractor
 	public class TractorLoader
 	{
 		private float _startPosX;
-		private float _startPosY;
+		private float _startPosY; a
 		private int _pictureWidth;
 		private int _pictureHeight;
 		private const int tractorWidth = 90;
