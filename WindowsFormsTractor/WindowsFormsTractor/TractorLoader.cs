@@ -49,5 +49,9 @@ namespace WindowsFormsTractor
 			}
 			base.DrawTractor(g);
 		}
+		public void SetDopColor(Color color)
+		{
+			DopColor = color;
+		}
 	}
 }

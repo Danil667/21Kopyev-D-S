@@ -12,6 +12,7 @@ namespace WindowsFormsTractor
 {
 	public partial class FormParking : Form
 	{
+		FormTractorConfig form;
 		MultiLevelParking parking;
 		private const int countLevel = 5;
 		public FormParking()
@@ -34,45 +35,6 @@ namespace WindowsFormsTractor
 				pictureBoxParking.Image = bmp;
 			}
 		}
-		private void buttonSetTractor_Click(object sender, EventArgs e)
-		{
-			if (listBoxLevel.SelectedIndex > -1)
-			{
-				ColorDialog dialog = new ColorDialog();
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					var tractor = new Tractor(100, 1000, dialog.Color);
-					int place = parking[listBoxLevel.SelectedIndex] + tractor;
-					if (place == -1)
-					{
-						MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-					Draw();
-				}
-			}
-		}
-		private void buttonSetDop_Click(object sender, EventArgs e)
-		{
-			if (listBoxLevel.SelectedIndex > -1)
-			{
-				ColorDialog dialog = new ColorDialog();
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					ColorDialog dialogDop = new ColorDialog();
-					if (dialogDop.ShowDialog() == DialogResult.OK)
-					{
-						var tractor = new TractorLoader(100, 1000, dialog.Color, dialogDop.Color, true, true, true);
-						int place = parking[listBoxLevel.SelectedIndex] + tractor;
-						if (place == -1)
-						{
-							MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						}
-						Draw();
-					}
-				}
-			}
-		}
-
 		private void buttonTakeTractor_Click(object sender, EventArgs e)
 		{
 			if (listBoxLevel.SelectedIndex > -1)
@@ -100,6 +62,27 @@ namespace WindowsFormsTractor
 		private void listBoxLevel_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Draw();
+		}
+		private void buttonSetTractor_Click(object sender, EventArgs e)
+		{
+			form = new FormTractorConfig();
+			form.AddEvent(AddTractor);
+			form.Show();
+		}
+		private void AddTractor(ITransport tractor)
+		{
+			if (tractor != null && listBoxLevel.SelectedIndex > -1)
+			{
+				int place = parking[listBoxLevel.SelectedIndex] + tractor;
+				if (place > -1)
+				{
+					Draw();
+				}
+				else
+				{
+					MessageBox.Show("Не удалось поставить");
+				}
+			}
 		}
 	}
 }
