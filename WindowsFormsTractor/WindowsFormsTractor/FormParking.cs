@@ -12,65 +12,94 @@ namespace WindowsFormsTractor
 {
 	public partial class FormParking : Form
 	{
-		Parking<ITransport> parking;
+		MultiLevelParking parking;
+		private const int countLevel = 5;
 		public FormParking()
 		{
 			InitializeComponent();
-			parking = new Parking<ITransport>(20, pictureBoxParking.Width, pictureBoxParking.Height);
-			Draw();
+			parking = new MultiLevelParking(countLevel, pictureBoxParking.Width, pictureBoxParking.Height);
+			for (int i = 0; i < countLevel; i++)
+			{
+				listBoxLevel.Items.Add("Уровень " + (i + 1));
+			}
+			listBoxLevel.SelectedIndex = 0;
 		}
 		private void Draw()
 		{
-			Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
-			Graphics gr = Graphics.FromImage(bmp);
-			parking.Draw(gr);
-			pictureBoxParking.Image = bmp;
+			if (listBoxLevel.SelectedIndex > -1)
+			{
+				Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
+				Graphics gr = Graphics.FromImage(bmp);
+				parking[listBoxLevel.SelectedIndex].Draw(gr);
+				pictureBoxParking.Image = bmp;
+			}
 		}
 		private void buttonSetTractor_Click(object sender, EventArgs e)
 		{
-			ColorDialog dialog = new ColorDialog();
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (listBoxLevel.SelectedIndex > -1)
 			{
-				var tractor = new Tractor(100, 1000, dialog.Color);
-				int place = parking + tractor;
-				Draw();
+				ColorDialog dialog = new ColorDialog();
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					var tractor = new Tractor(100, 1000, dialog.Color);
+					int place = parking[listBoxLevel.SelectedIndex] + tractor;
+					if (place == -1)
+					{
+						MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+					Draw();
+				}
 			}
 		}
 		private void buttonSetDop_Click(object sender, EventArgs e)
 		{
-			ColorDialog dialog = new ColorDialog();
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (listBoxLevel.SelectedIndex > -1)
 			{
-				ColorDialog dialogDop = new ColorDialog();
-				if (dialogDop.ShowDialog() == DialogResult.OK)
+				ColorDialog dialog = new ColorDialog();
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
-					var tractor = new TractorLoader(100, 1000, dialog.Color, dialogDop.Color, true, true, true);
-					int place = parking + tractor;
-					Draw();
+					ColorDialog dialogDop = new ColorDialog();
+					if (dialogDop.ShowDialog() == DialogResult.OK)
+					{
+						var tractor = new TractorLoader(100, 1000, dialog.Color, dialogDop.Color, true, true, true);
+						int place = parking[listBoxLevel.SelectedIndex] + tractor;
+						if (place == -1)
+						{
+							MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						}
+						Draw();
+					}
 				}
 			}
 		}
 
 		private void buttonTakeTractor_Click(object sender, EventArgs e)
 		{
-			if (maskedTextBox.Text != "")
+			if (listBoxLevel.SelectedIndex > -1)
 			{
-				var tractor = parking - Convert.ToInt32(maskedTextBox.Text);
-				if (tractor != null)
+				if (maskedTextBox.Text != "")
 				{
-					Bitmap bmp = new Bitmap(pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
-					Graphics gr = Graphics.FromImage(bmp);
-					tractor.SetPosition(21, 25, pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
-					tractor.DrawTractor(gr);
-					pictureBoxTakeTractor.Image = bmp;
+					var tractor = parking[listBoxLevel.SelectedIndex] - Convert.ToInt32(maskedTextBox.Text);
+					if (tractor != null)
+					{
+						Bitmap bmp = new Bitmap(pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
+						Graphics gr = Graphics.FromImage(bmp);
+						tractor.SetPosition(20, 25, pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
+						tractor.DrawTractor(gr);
+						pictureBoxTakeTractor.Image = bmp;
+					}
+					else
+					{
+						Bitmap bmp = new Bitmap(pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
+						pictureBoxTakeTractor.Image = bmp;
+					}
+					Draw();
 				}
-				else
-				{
-					Bitmap bmp = new Bitmap(pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
-					pictureBoxTakeTractor.Image = bmp;
-				}
-				Draw();
 			}
+		}
+		private void listBoxLevel_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Draw();
 		}
 	}
 }

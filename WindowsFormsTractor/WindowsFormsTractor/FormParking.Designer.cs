@@ -19,7 +19,6 @@
 			}
 			base.Dispose(disposing);
 		}
-
 		#region Windows Form Designer generated code
 
 		/// <summary>
@@ -36,6 +35,7 @@
 			this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
 			this.labelPlace = new System.Windows.Forms.Label();
 			this.pictureBoxTakeTractor = new System.Windows.Forms.PictureBox();
+			this.listBoxLevel = new System.Windows.Forms.ListBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
 			this.groupBoxTake.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeTractor)).BeginInit();
@@ -52,7 +52,7 @@
 			// 
 			// buttonSetTractor
 			// 
-			this.buttonSetTractor.Location = new System.Drawing.Point(671, 0);
+			this.buttonSetTractor.Location = new System.Drawing.Point(671, 123);
 			this.buttonSetTractor.Name = "buttonSetTractor";
 			this.buttonSetTractor.Size = new System.Drawing.Size(93, 39);
 			this.buttonSetTractor.TabIndex = 1;
@@ -62,7 +62,7 @@
 			// 
 			// buttonSetDop
 			// 
-			this.buttonSetDop.Location = new System.Drawing.Point(671, 45);
+			this.buttonSetDop.Location = new System.Drawing.Point(671, 168);
 			this.buttonSetDop.Name = "buttonSetDop";
 			this.buttonSetDop.Size = new System.Drawing.Size(93, 42);
 			this.buttonSetDop.TabIndex = 2;
@@ -116,11 +116,21 @@
 			this.pictureBoxTakeTractor.TabIndex = 4;
 			this.pictureBoxTakeTractor.TabStop = false;
 			// 
+			// listBoxLevel
+			// 
+			this.listBoxLevel.FormattingEnabled = true;
+			this.listBoxLevel.Location = new System.Drawing.Point(671, 12);
+			this.listBoxLevel.Name = "listBoxLevel";
+			this.listBoxLevel.Size = new System.Drawing.Size(126, 108);
+			this.listBoxLevel.TabIndex = 5;
+			this.listBoxLevel.SelectedIndexChanged += new System.EventHandler(this.listBoxLevel_SelectedIndexChanged);
+			// 
 			// FormParking
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(796, 452);
+			this.ClientSize = new System.Drawing.Size(814, 452);
+			this.Controls.Add(this.listBoxLevel);
 			this.Controls.Add(this.pictureBoxTakeTractor);
 			this.Controls.Add(this.groupBoxTake);
 			this.Controls.Add(this.buttonSetDop);
@@ -146,5 +156,6 @@
 		private System.Windows.Forms.MaskedTextBox maskedTextBox;
 		private System.Windows.Forms.Label labelPlace;
 		private System.Windows.Forms.PictureBox pictureBoxTakeTractor;
+		private System.Windows.Forms.ListBox listBoxLevel;
 	}
 }
