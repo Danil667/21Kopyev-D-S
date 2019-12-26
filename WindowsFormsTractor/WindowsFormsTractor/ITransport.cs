@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTractor
 {
-	interface ITransport
+	public interface ITransport
 	{
 		void SetPosition(int x, int y, int width, int height);
 		void MoveTransport(Direction direction);

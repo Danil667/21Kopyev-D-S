@@ -53,7 +53,7 @@ namespace WindowsFormsTractor
 			Pen pen = new Pen(Color.Black);
 			Brush brBlack = new SolidBrush(Color.Black);
 			Brush brWhite = new SolidBrush(Color.White);
-			Brush brYell = new SolidBrush(Color.Yellow);
+			Brush brYell = new SolidBrush(MainColor);
 			g.FillEllipse(brBlack, _startPosX, _startPosY, 50, 20);
 			g.FillEllipse(brWhite, _startPosX + 1, _startPosY + 1, 48, 18);
 			g.DrawRectangle(pen, _startPosX + 20, _startPosY - 14, 18, 14);
