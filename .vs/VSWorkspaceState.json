@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WindowsFormsTractor",
+    "\\WindowsFormsTractor\\WindowsFormsTractor",
+    "\\WindowsFormTractor"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\WindowsFormsTractor\\WindowsFormsTractor",
   "PreviewInSolutionExplorer": false
 }
