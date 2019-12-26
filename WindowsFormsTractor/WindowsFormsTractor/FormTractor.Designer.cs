@@ -34,6 +34,7 @@
 			this.buttonUp = new System.Windows.Forms.Button();
 			this.buttonCreate = new System.Windows.Forms.Button();
 			this.pictureBoxTractor = new System.Windows.Forms.PictureBox();
+			this.buttonCreateDop = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTractor)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -95,6 +96,16 @@
 			this.buttonCreate.UseVisualStyleBackColor = true;
 			this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
 			// 
+			// buttonCreateDop
+			// 
+			this.buttonCreateDop.Location = new System.Drawing.Point(82, 0);
+			this.buttonCreateDop.Name = "buttonCreateDop";
+			this.buttonCreateDop.Size = new System.Drawing.Size(172, 23);
+			this.buttonCreateDop.TabIndex = 12;
+			this.buttonCreateDop.Text = "создать с дополнениями";
+			this.buttonCreateDop.UseVisualStyleBackColor = true;
+			this.buttonCreateDop.Click += new System.EventHandler(this.ButtonCreateDop_Click);
+			// 
 			// pictureBoxTractor
 			// 
 			this.pictureBoxTractor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -109,6 +120,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.buttonCreateDop);
 			this.Controls.Add(this.buttonRight);
 			this.Controls.Add(this.buttonDown);
 			this.Controls.Add(this.buttonLeft);
@@ -130,6 +142,7 @@
 		private System.Windows.Forms.Button buttonUp;
 		private System.Windows.Forms.Button buttonCreate;
 		private System.Windows.Forms.PictureBox pictureBoxTractor;
+		private System.Windows.Forms.Button buttonCreateDop;
 	}
 }
 
