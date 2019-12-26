@@ -53,9 +53,12 @@
     <Compile Include="FormTractor.Designer.cs">
       <DependentUpon>FormTractor.cs</DependentUpon>
     </Compile>
+    <Compile Include="ITransport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tractor.cs" />
     <Compile Include="TractorLoader.cs" />
+    <Compile Include="Venicle.cs" />
     <EmbeddedResource Include="FormTractor.resx">
       <DependentUpon>FormTractor.cs</DependentUpon>
     </EmbeddedResource>

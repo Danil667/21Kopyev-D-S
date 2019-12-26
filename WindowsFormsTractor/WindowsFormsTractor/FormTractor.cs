@@ -12,7 +12,7 @@ namespace WindowsFormsTractor
 {
 	public partial class FormTractor : Form
 	{
-		private TractorLoader tractor;
+		private ITransport tractor;
 		public FormTractor()
 		{
 			InitializeComponent();
@@ -24,11 +24,18 @@ namespace WindowsFormsTractor
 			tractor.DrawTractor(gr);
 			pictureBoxTractor.Image = bmp;
 		}
+		private void ButtonCreateDop_Click(object sender, EventArgs e)
+		{
+			Random rnd = new Random();
+			tractor = new TractorLoader(rnd.Next(50, 100), rnd.Next(1000, 2000), Color.Yellow, Color.Black, true, true, true);
+			tractor.SetPosition(rnd.Next(18, 100), rnd.Next(65, 100), pictureBoxTractor.Width, pictureBoxTractor.Height);
+			Draw();
+		}
 		private void buttonCreate_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			tractor = new TractorLoader(rnd.Next(100, 300), rnd.Next(2700, 3000), Color.Black, Color.Black, true, true, true);
-			tractor.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTractor.Width, pictureBoxTractor.Height);
+			tractor = new Tractor(rnd.Next(50, 100), rnd.Next(1000, 2000), Color.Yellow);
+			tractor.SetPosition(rnd.Next(18, 100), rnd.Next(65, 100), pictureBoxTractor.Width, pictureBoxTractor.Height);
 			Draw();
 		}
 		private void buttonMove_Click(object sender, EventArgs e)
