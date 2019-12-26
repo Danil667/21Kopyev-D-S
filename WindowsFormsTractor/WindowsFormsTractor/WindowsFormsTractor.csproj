@@ -66,6 +66,9 @@
     <Compile Include="Tractor.cs" />
     <Compile Include="TractorLoader.cs" />
     <Compile Include="Venicle.cs" />
+    <EmbeddedResource Include="FormParking.resx">
+      <DependentUpon>FormParking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTractor.resx">
       <DependentUpon>FormTractor.cs</DependentUpon>
     </EmbeddedResource>
