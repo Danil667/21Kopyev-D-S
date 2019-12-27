@@ -51,15 +51,19 @@ namespace WindowsFormsTractor
 						var tractor = level[i];
 						if (tractor != null)
 						{
-							if (tractor.GetType().Name == "Tractor")
+							try
 							{
-								sw.Write(i + ":Tractor:");
+								if (tractor.GetType().Name == "Tractor")
+								{
+									sw.Write(i + ":Tractor:");
+								}
+								if (tractor.GetType().Name == "TractorLoader")
+								{
+									sw.Write(i + ":TractorLoader:");
+								}
+								sw.WriteLine(tractor);
 							}
-							if (tractor.GetType().Name == "TractorLoader")
-							{
-								sw.Write(i + ":TractorLoader:");
-							}
-							sw.WriteLine(tractor);
+							finally { }
 						}
 					}
 				}
@@ -91,7 +95,7 @@ namespace WindowsFormsTractor
 				}
 				else
 				{
-					return false;
+					throw new Exception("Неверный формат файла");
 				}
 				int counter = -1;
 				ITransport tractor = null;
