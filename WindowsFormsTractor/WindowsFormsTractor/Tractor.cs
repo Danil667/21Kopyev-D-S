@@ -17,6 +17,16 @@ namespace WindowsFormsTractor
 			Weight = weight;
 			MainColor = mainColor;
 		}
+		public Tractor(string info)
+		{
+			string[] strs = info.Split(';');
+			if (strs.Length == 3)
+			{
+				MaxSpeed = Convert.ToInt32(strs[0]);
+				Weight = Convert.ToInt32(strs[1]);
+				MainColor = Color.FromName(strs[2]);
+			}
+		}
 		public override void MoveTransport(Direction direction)
 		{
 			float step = MaxSpeed * 100 / Weight;
@@ -64,6 +74,10 @@ namespace WindowsFormsTractor
 			g.FillRectangle(brYell, _startPosX + 2, _startPosY - 4, 46, 16);
 			g.FillRectangle(brYell, _startPosX - 2, _startPosY + 2, 4, 10);
 			g.FillRectangle(brYell, _startPosX + 48, _startPosY + 2, 4, 10);
+		}
+		public override string ToString()
+		{
+			return MaxSpeed + ";" + Weight + ";" + MainColor.Name;
 		}
 	}
 }
