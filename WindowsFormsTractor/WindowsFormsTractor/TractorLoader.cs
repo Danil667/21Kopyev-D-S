@@ -13,13 +13,17 @@ namespace WindowsFormsTractor
 		public bool RearBucket { private set; get; }
 		public bool FrontBucket { private set; get; }
 		public bool Lantern { private set; get; }
-		public TractorLoader(int maxSpeed, float weight, Color mainColor, Color dopColor, bool rearbucket, bool lantern, bool frontbucket) :
+		public TractorRinksCount Count { protected set; get; }
+		private int RinksType;
+		public TractorLoader(int maxSpeed, float weight, Color mainColor, Color dopColor, bool rearbucket, bool lantern, bool frontbucket, TractorRinksCount tractorrinks) :
 			base(maxSpeed, weight, mainColor)
 		{
 			DopColor = dopColor;
 			RearBucket = rearbucket;
 			Lantern = lantern;
 			FrontBucket = frontbucket;
+			Count = tractorrinks;
+			RinksType = new Random().Next(0, 3);
 		}
 		public override void DrawTractor(Graphics g)
 		{
@@ -48,6 +52,21 @@ namespace WindowsFormsTractor
 				g.FillEllipse(brBlack, _startPosX + 16, _startPosY - 25, 5, 5);
 			}
 			base.DrawTractor(g);
+			ITractor tractorR;
+
+			switch (RinksType)
+			{
+				case 0:
+					tractorR = new TractorRinks(_startPosX, _startPosY);
+					break;
+				case 1:
+					tractorR = new ImprovedRinks(_startPosX, _startPosY);
+					break;
+				default:
+					tractorR = new RinksTriangle(_startPosX, _startPosY);
+					break;
+			}
+			tractorR.DrawRinks(Count, g, DopColor);
 		}
 	}
 }
