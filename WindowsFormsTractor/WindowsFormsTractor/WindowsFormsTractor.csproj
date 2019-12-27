@@ -56,6 +56,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TractorLoader.cs" />
+    <Compile Include="TractorRinks.cs" />
+    <Compile Include="TractorRinksCount.cs" />
     <EmbeddedResource Include="FormTractor.resx">
       <DependentUpon>FormTractor.cs</DependentUpon>
     </EmbeddedResource>
