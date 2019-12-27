@@ -22,7 +22,8 @@ namespace WindowsFormsTractor
 		public bool RearBucket { private set; get; }
 		public bool FrontBucket { private set; get; }
 		public bool Lantern { private set; get; }
-		public TractorLoader(int maxSpeed, float weight, Color mainColor, Color dopColor, bool rearbucket, bool lantern, bool frontbucket)
+		public TractorRinksCount Count { protected set; get; }
+		public TractorLoader(int maxSpeed, float weight, Color mainColor, Color dopColor, bool rearbucket, bool lantern, bool frontbucket, TractorRinksCount tractorrinks)
 		{
 			MaxSpeed = maxSpeed;
 			Weight = weight;
@@ -31,6 +32,7 @@ namespace WindowsFormsTractor
 			RearBucket = rearbucket;
 			Lantern = lantern;
 			FrontBucket = frontbucket;
+			Count = tractorrinks;
 		}
 		public void SetPosition(int x, int y, int width, int height)
 		{
@@ -108,6 +110,8 @@ namespace WindowsFormsTractor
 				g.DrawLine(pen, _startPosX + 20, _startPosY - 14, _startPosX + 20, _startPosY - 20);
 				g.FillEllipse(brBlack, _startPosX + 16, _startPosY - 25, 5, 5);
 			}
+			TractorRinks tractorrinks = new TractorRinks(Count, MainColor, DopColor, _startPosX, _startPosY);
+			tractorrinks.DrawRinks(g);
 		}
 	}
 }
