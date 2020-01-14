@@ -90,6 +90,9 @@
     <EmbeddedResource Include="FormTractor.resx">
       <DependentUpon>FormTractor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTractorConfig.resx">
+      <DependentUpon>FormTractorConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

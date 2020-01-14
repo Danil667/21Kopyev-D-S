@@ -33,8 +33,8 @@
 			this.labelTractorLoader = new System.Windows.Forms.Label();
 			this.labelTractor = new System.Windows.Forms.Label();
 			this.panelTractor = new System.Windows.Forms.Panel();
-			this.labelBaseColor = new System.Windows.Forms.Label();
 			this.labelDopColor = new System.Windows.Forms.Label();
+			this.labelBaseColor = new System.Windows.Forms.Label();
 			this.groupBoxColor = new System.Windows.Forms.GroupBox();
 			this.panelColor = new System.Windows.Forms.Panel();
 			this.panelGold = new System.Windows.Forms.Panel();
@@ -108,18 +108,6 @@
 			this.panelTractor.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelTractor_DragDrop);
 			this.panelTractor.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelTractor_DragEnter);
 			// 
-			// labelBaseColor
-			// 
-			this.labelBaseColor.AllowDrop = true;
-			this.labelBaseColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.labelBaseColor.Location = new System.Drawing.Point(32, 155);
-			this.labelBaseColor.Name = "labelBaseColor";
-			this.labelBaseColor.Size = new System.Drawing.Size(100, 23);
-			this.labelBaseColor.TabIndex = 3;
-			this.labelBaseColor.Text = "Основной";
-			this.labelBaseColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragDrop);
-			this.labelBaseColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
-			// 
 			// labelDopColor
 			// 
 			this.labelDopColor.AllowDrop = true;
@@ -131,6 +119,18 @@
 			this.labelDopColor.Text = "Дополнительный";
 			this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
 			this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
+			// 
+			// labelBaseColor
+			// 
+			this.labelBaseColor.AllowDrop = true;
+			this.labelBaseColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.labelBaseColor.Location = new System.Drawing.Point(32, 155);
+			this.labelBaseColor.Name = "labelBaseColor";
+			this.labelBaseColor.Size = new System.Drawing.Size(100, 23);
+			this.labelBaseColor.TabIndex = 3;
+			this.labelBaseColor.Text = "Основной";
+			this.labelBaseColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragDrop);
+			this.labelBaseColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
 			// 
 			// groupBoxColor
 			// 
@@ -200,7 +200,7 @@
 			// 
 			// panelGreen
 			// 
-			this.panelGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+			this.panelGreen.BackColor = System.Drawing.Color.Green;
 			this.panelGreen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panelGreen.Location = new System.Drawing.Point(24, 62);
 			this.panelGreen.Name = "panelGreen";
@@ -220,7 +220,7 @@
 			// 
 			// panelBlue
 			// 
-			this.panelBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+			this.panelBlue.BackColor = System.Drawing.Color.Blue;
 			this.panelBlue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panelBlue.Location = new System.Drawing.Point(76, 62);
 			this.panelBlue.Name = "panelBlue";
