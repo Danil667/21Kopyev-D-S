@@ -43,26 +43,20 @@ namespace WindowsFormsTractor
 			using (StreamWriter sw = new StreamWriter(filename))
 			{
 				sw.WriteLine("CountLevels:" + parkingStages.Count);
-
 				foreach (var level in parkingStages)
 				{
 					sw.WriteLine("Level");
-					for (int i = 0; i < countPlaces; i++)
+					foreach (ITransport tractor in level)
 					{
-
-						foreach (ITransport tractor in level)
+						if (tractor.GetType().Name == "Tractor")
 						{
-							if (tractor.GetType().Name == "Tractor")
-							{
-								sw.Write(i + ":Tractor:");
-							}
-							if (tractor.GetType().Name == "TractorLoader")
-							{
-								sw.Write(i + ":TractorLoader:");
-							}
-							sw.WriteLine(tractor);
+							sw.Write(level.GetKey + ":Tractor:");
 						}
-
+						if (tractor.GetType().Name == "TractorLoader")
+						{
+							sw.Write(level.GetKey + ":TractorLoader:");
+						}
+						sw.WriteLine(tractor);
 					}
 				}
 			}
@@ -106,7 +100,6 @@ namespace WindowsFormsTractor
 						parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth, pictureHeight));
 						continue;
 					}
-
 					if (string.IsNullOrEmpty(strs))
 					{
 						break;

@@ -99,6 +99,7 @@ namespace WindowsFormsTractor
 				}
 				catch (ParkingAlreadyHaveException ex)
 				{
+					exception.Debug(ex.Message);
 					MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 				catch (Exception ex)
