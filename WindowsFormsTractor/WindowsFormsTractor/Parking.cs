@@ -39,6 +39,10 @@ namespace WindowsFormsTractor
 			{
 				throw new ParkingOverflowException();
 			}
+			if (p._places.ContainsValue(tractor))
+			{
+				throw new ParkingAlreadyHaveException();
+			}
 			for (int i = 0; i < p._maxCount; i++)
 			{
 				if (p.CheckFreePlace(i))
