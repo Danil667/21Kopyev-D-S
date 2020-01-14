@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTractor
 {
-	public class TractorLoader : Tractor
+	public class TractorLoader : Tractor, IComparable<TractorLoader>, IEquatable<TractorLoader>
 	{
 		public Color DopColor { private set; get; }
 		public bool RearBucket { private set; get; }
@@ -70,6 +70,79 @@ namespace WindowsFormsTractor
 		public override string ToString()
 		{
 			return base.ToString() + ";" + DopColor.Name + ";" + RearBucket + ";" + Lantern + ";" + FrontBucket;
+		}
+		public int CompareTo(TractorLoader other)
+		{
+			var res = (this is Tractor).CompareTo(other is Tractor);
+			if (res != 0)
+			{
+				return res;
+			}
+			if (DopColor != other.DopColor)
+			{
+				DopColor.Name.CompareTo(other.DopColor.Name);
+			}
+			if (FrontBucket != other.FrontBucket)
+			{
+				return FrontBucket.CompareTo(other.FrontBucket);
+			}
+			if (RearBucket != other.RearBucket)
+			{
+				return RearBucket.CompareTo(other.RearBucket);
+			}
+			if (Lantern != other.Lantern)
+			{
+				return Lantern.CompareTo(other.Lantern);
+			}
+			return 0;
+		}
+		public bool Equals(TractorLoader other)
+		{
+			var res = (this as Tractor).Equals(other as Tractor);
+			if (!res)
+			{
+				return res;
+			}
+			if (GetType().Name != other.GetType().Name)
+			{
+				return false;
+			}
+			if (DopColor != other.DopColor)
+			{
+				return false;
+			}
+			if (FrontBucket != other.FrontBucket)
+			{
+				return false;
+			}
+			if (RearBucket != other.RearBucket)
+			{
+				return false;
+			}
+			if (Lantern != other.Lantern)
+			{
+				return false;
+			}
+			return true;
+		}
+		public override bool Equals(Object obj)
+		{
+			if (obj == null)
+			{
+				return false;
+			}
+			if (!(obj is TractorLoader carObj))
+			{
+				return false;
+			}
+			else
+			{
+				return Equals(carObj);
+			}
+		}
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
 		}
 	}
 }
