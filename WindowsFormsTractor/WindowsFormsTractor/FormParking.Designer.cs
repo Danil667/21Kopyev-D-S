@@ -36,6 +36,8 @@
 			this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
 			this.labelPlace = new System.Windows.Forms.Label();
 			this.pictureBoxTakeTractor = new System.Windows.Forms.PictureBox();
+			this.buttonComparePlace = new System.Windows.Forms.Button();
+			this.labelCompareText = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
 			this.groupBoxTake.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeTractor)).BeginInit();
@@ -116,11 +118,30 @@
 			this.pictureBoxTakeTractor.TabIndex = 4;
 			this.pictureBoxTakeTractor.TabStop = false;
 			// 
+			// buttonComparePlace
+			// 
+			this.buttonComparePlace.Location = new System.Drawing.Point(671, 165);
+			this.buttonComparePlace.Name = "buttonComparePlace";
+			this.buttonComparePlace.Size = new System.Drawing.Size(127, 45);
+			this.buttonComparePlace.TabIndex = 9;
+			this.buttonComparePlace.Text = "Колличество свободных мест";
+			this.buttonComparePlace.UseVisualStyleBackColor = true;
+			this.buttonComparePlace.Click += new System.EventHandler(this.buttonComparePlace_Click);
+			// 
+			// labelCompareText
+			// 
+			this.labelCompareText.Location = new System.Drawing.Point(671, 90);
+			this.labelCompareText.Name = "labelCompareText";
+			this.labelCompareText.Size = new System.Drawing.Size(117, 72);
+			this.labelCompareText.TabIndex = 11;
+			// 
 			// FormParking
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(796, 452);
+			this.Controls.Add(this.labelCompareText);
+			this.Controls.Add(this.buttonComparePlace);
 			this.Controls.Add(this.pictureBoxTakeTractor);
 			this.Controls.Add(this.groupBoxTake);
 			this.Controls.Add(this.buttonSetDop);
@@ -133,11 +154,10 @@
 			this.groupBoxTake.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeTractor)).EndInit();
 			this.ResumeLayout(false);
-
 		}
-
 		#endregion
-
+		private System.Windows.Forms.Button buttonComparePlace;
+		private System.Windows.Forms.Label labelCompareText;
 		private System.Windows.Forms.PictureBox pictureBoxParking;
 		private System.Windows.Forms.Button buttonSetTractor;
 		private System.Windows.Forms.Button buttonSetDop;

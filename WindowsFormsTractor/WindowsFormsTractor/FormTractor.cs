@@ -27,7 +27,8 @@ namespace WindowsFormsTractor
 		private void ButtonCreateDop_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			tractor = new TractorLoader(rnd.Next(50, 100), rnd.Next(1000, 2000), Color.Yellow, Color.Black, true, true, true);
+			TractorRinksCount Count = TractorRinksCount.SIX;
+			tractor = new TractorLoader(rnd.Next(50, 100), rnd.Next(1000, 2000), Color.Yellow, Color.Black, true, true, true, Count);
 			tractor.SetPosition(rnd.Next(18, 100), rnd.Next(65, 100), pictureBoxTractor.Width, pictureBoxTractor.Height);
 			Draw();
 		}

@@ -12,11 +12,11 @@ namespace WindowsFormsTractor
 {
 	public partial class FormParking : Form
 	{
-		Parking<ITransport> parking;
+		Parking<ITransport, ITractor> parking;
 		public FormParking()
 		{
 			InitializeComponent();
-			parking = new Parking<ITransport>(20, pictureBoxParking.Width, pictureBoxParking.Height);
+			parking = new Parking<ITransport, ITractor>(20, 6, pictureBoxParking.Width, pictureBoxParking.Height);
 			Draw();
 		}
 		private void Draw()
@@ -44,13 +44,12 @@ namespace WindowsFormsTractor
 				ColorDialog dialogDop = new ColorDialog();
 				if (dialogDop.ShowDialog() == DialogResult.OK)
 				{
-					var tractor = new TractorLoader(100, 1000, dialog.Color, dialogDop.Color, true, true, true);
+					var tractor = new TractorLoader(100, 1000, dialog.Color, dialogDop.Color, true, true, true, TractorRinksCount.FOUR );
 					int place = parking + tractor;
 					Draw();
 				}
 			}
 		}
-
 		private void buttonTakeTractor_Click(object sender, EventArgs e)
 		{
 			if (maskedTextBox.Text != "")
@@ -70,6 +69,24 @@ namespace WindowsFormsTractor
 					pictureBoxTakeTractor.Image = bmp;
 				}
 				Draw();
+			}
+		}
+		private void buttonComparePlace_Click(object sender, EventArgs e)
+		{
+			if (maskedTextBox.Text != "")
+			{
+				if (parking < Convert.ToInt32(maskedTextBox.Text))
+				{
+					labelCompareText.Text = "Свободных мест меньше " + maskedTextBox.Text;
+				}
+				else if (parking > Convert.ToInt32(maskedTextBox.Text))
+				{
+					labelCompareText.Text = "Свободных мест больше " + maskedTextBox.Text;
+				}
+				else
+				{
+					labelCompareText.Text = "Свободных мест " + maskedTextBox.Text;
+				}
 			}
 		}
 	}

@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTractor
 {
-	public class Parking<T> where T : class, ITransport
+	public class Parking<T, A> where T : class, ITransport where A : class, ITractor
 	{
 		private T[] _places;
+		private A[] tractorR;
 		private int PictureWidth { get; set; }
 		private int PictureHeight { get; set; }
 		private const int _placeSizeWidth = 160;
 		private const int _placeSizeHeight = 55;
-		public Parking(int sizes, int pictureWidth, int pictureHeight)
+		public Parking(int sizes, int countTractor, int pictureWidth, int pictureHeight)
 		{
 			_places = new T[sizes];
+			tractorR = new A[countTractor];
 			PictureWidth = pictureWidth;
 			PictureHeight = pictureHeight;
 			for (int i = 0; i < _places.Length; i++)
@@ -24,7 +26,7 @@ namespace WindowsFormsTractor
 				_places[i] = null;
 			}
 		}
-		public static int operator +(Parking<T> p, T tractor)
+		public static int operator +(Parking<T, A> p, T tractor)
 		{
 			for (int i = 0; i < p._places.Length; i++)
 			{
@@ -38,7 +40,7 @@ namespace WindowsFormsTractor
 			}
 			return -1;
 		}
-		public static T operator -(Parking<T> p, int index)
+		public static T operator -(Parking<T, A> p, int index)
 		{
 			if (index < 0 || index > p._places.Length)
 			{
@@ -52,9 +54,34 @@ namespace WindowsFormsTractor
 			}
 			return null;
 		}
+		public static bool operator <(Parking<T, A> p, int index)
+		{
+			int freePlaces = 0;
+			for (int i = 0; i < p._places.Length; i++)
+			{
+				if (p.CheckFreePlace(i))
+				{
+					freePlaces++;
+				}
+			}
+			return freePlaces < index ? true : false;
+		}
+		public static bool operator >(Parking<T, A> p, int index)
+		{
+			int freePlaces = 0;
+			for (int i = 0; i < p._places.Length; i++)
+			{
+				if (p.CheckFreePlace(i))
+				{
+					freePlaces++;
+				}
+			}
+			return freePlaces > index ? true : false;
+		}
 		private bool CheckFreePlace(int index)
 		{
 			return _places[index] == null;
+
 		}
 		public void Draw(Graphics g)
 		{
@@ -64,6 +91,13 @@ namespace WindowsFormsTractor
 				if (!CheckFreePlace(i))
 				{
 					_places[i].DrawTractor(g);
+				}
+			}
+			for (int i = 0; i < tractorR.Length; i++)
+			{
+				if (tractorR[i] != null)
+				{
+					tractorR[i].DrawRinks(TractorRinksCount.FIVE, g, Color.White);
 				}
 			}
 		}
