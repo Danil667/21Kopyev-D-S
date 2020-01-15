@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTractor
 {
-	public class Tractor : Vehicle
+	public class Tractor : Vehicle, IComparable<Tractor>, IEquatable<Tractor>
 	{
 		protected const int carWidth = 80;
 		protected const int carHeight = 60;
@@ -75,9 +75,72 @@ namespace WindowsFormsTractor
 			g.FillRectangle(brYell, _startPosX - 2, _startPosY + 2, 4, 10);
 			g.FillRectangle(brYell, _startPosX + 48, _startPosY + 2, 4, 10);
 		}
+		public int CompareTo(Tractor other)
+		{
+			if (other == null)
+			{
+				return 1;
+			}
+			if (MaxSpeed != other.MaxSpeed)
+			{
+				return MaxSpeed.CompareTo(other.MaxSpeed);
+			}
+			if (Weight != other.Weight)
+			{
+				return Weight.CompareTo(other.Weight);
+			}
+			if (MainColor != other.MainColor)
+			{
+				MainColor.Name.CompareTo(other.MainColor.Name);
+			}
+			return 0;
+		}
+		public bool Equals(Tractor other)
+		{
+			if (other == null)
+			{
+				return false;
+			}
+			if (GetType().Name != other.GetType().Name)
+			{
+				return false;
+			}
+			if (MaxSpeed != other.MaxSpeed)
+			{
+				return false;
+			}
+			if (Weight != other.Weight)
+			{
+				return false;
+			}
+			if (MainColor != other.MainColor)
+			{
+				return false;
+			}
+			return true;
+		}
 		public override string ToString()
 		{
 			return MaxSpeed + ";" + Weight + ";" + MainColor.Name;
+		}
+		public override bool Equals(Object obj)
+		{
+			if (obj == null)
+			{
+				return false;
+			}
+			if (!(obj is Tractor carObj))
+			{
+				return false;
+			}
+			else
+			{
+				return Equals(carObj);
+			}
+		}
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
 		}
 	}
 }

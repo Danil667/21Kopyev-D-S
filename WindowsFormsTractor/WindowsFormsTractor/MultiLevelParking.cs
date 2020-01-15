@@ -46,25 +46,17 @@ namespace WindowsFormsTractor
 				foreach (var level in parkingStages)
 				{
 					sw.WriteLine("Level");
-					for (int i = 0; i < countPlaces; i++)
+					foreach (ITransport tractor in level)
 					{
-						var tractor = level[i];
-						if (tractor != null)
+						if (tractor.GetType().Name == "Tractor")
 						{
-							try
-							{
-								if (tractor.GetType().Name == "Tractor")
-								{
-									sw.Write(i + ":Tractor:");
-								}
-								if (tractor.GetType().Name == "TractorLoader")
-								{
-									sw.Write(i + ":TractorLoader:");
-								}
-								sw.WriteLine(tractor);
-							}
-							finally { }
+							sw.Write(level.GetKey + ":Tractor:");
 						}
+						if (tractor.GetType().Name == "TractorLoader")
+						{
+							sw.Write(level.GetKey + ":TractorLoader:");
+						}
+						sw.WriteLine(tractor);
 					}
 				}
 			}
@@ -79,7 +71,7 @@ namespace WindowsFormsTractor
 		{
 			if (!File.Exists(filename))
 			{
-				return false;
+				throw new FileNotFoundException();
 			}
 			using (StreamReader sr = new StreamReader(filename))
 			{
@@ -124,6 +116,10 @@ namespace WindowsFormsTractor
 				}
 			}
 			return true;
+		}
+		public void Sort()
+		{
+			parkingStages.Sort();
 		}
 	}
 }

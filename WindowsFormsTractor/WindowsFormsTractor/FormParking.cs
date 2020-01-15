@@ -97,6 +97,11 @@ namespace WindowsFormsTractor
 					exception.Debug(ex.Message);
 					MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
+				catch (ParkingAlreadyHaveException ex)
+				{
+					exception.Debug(ex.Message);
+					MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 				catch (Exception ex)
 				{
 					exception.Debug(ex.Message);
@@ -143,6 +148,12 @@ namespace WindowsFormsTractor
 				}
 				Draw();
 			}
+		}
+		private void buttonSort_Click(object sender, EventArgs e)
+		{
+			parking.Sort();
+			Draw();
+			logger.Info("Сортировка уровней");
 		}
 	}
 }
