@@ -29,5 +29,16 @@ namespace WindowsFormsTractor
 				return null;
 			}
 		}
+		public ITransport this[int level, int key]
+		{
+			get
+			{
+				if (level > -1 && level < parkingStages.Count)
+				{
+					return parkingStages[level].GetTransportByKey(key);
+				}
+				return null;
+			}
+		}
 	}
 }
