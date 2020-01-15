@@ -10,6 +10,7 @@ namespace WindowsFormsTractor
 	public class Parking<T> where T : class, ITransport
 	{
 		private Dictionary<int, T> _places;
+		private Queue<T> removedTransport;
 		private int _maxCount;
 		private int PictureWidth { get; set; }
 		private int PictureHeight { get; set; }
@@ -18,6 +19,7 @@ namespace WindowsFormsTractor
 		public Parking(int sizes, int pictureWidth, int pictureHeight)
 		{
 			_maxCount = sizes;
+			removedTransport = new Queue<T>();
 			_places = new Dictionary<int, T>();
 			PictureWidth = pictureWidth;
 			PictureHeight = pictureHeight;
@@ -46,6 +48,7 @@ namespace WindowsFormsTractor
 			{
 				T tractor = p._places[index];
 				p._places.Remove(index);
+				p.removedTransport.Enqueue(tractor);
 				return tractor;
 			}
 			return null;
@@ -54,6 +57,12 @@ namespace WindowsFormsTractor
 		{
 			return !_places.ContainsKey(index);
 		}
+		public T GetTransportByKey(int key)
+		{
+			return _places.ContainsKey(key) ? _places[key] : null;
+		}
+
+
 		public void Draw(Graphics g)
 		{
 			DrawMarking(g);
