@@ -26,7 +26,7 @@ namespace WindowsFormsTractor
 		{
 			if (p._places.Count == p._maxCount)
 			{
-				return -1;
+				throw new ParkingOverflowException();
 			}
 			for (int i = 0; i < p._maxCount; i++)
 			{
@@ -48,7 +48,7 @@ namespace WindowsFormsTractor
 				p._places.Remove(index);
 				return tractor;
 			}
-			return null;
+			throw new ParkingNotFoundException(index);		
 		}
 		private bool CheckFreePlace(int index)
 		{
@@ -94,7 +94,12 @@ namespace WindowsFormsTractor
 					_places.Add(ind, value);
 					_places[ind].SetPosition(5 + ind / 5 * _placeSizeWidth + 20, ind % 5 * _placeSizeHeight + 29, PictureWidth, PictureHeight);
 				}
+				else
+				{
+					throw new ParkingOccupiedPlaceException(ind);
+				}
 			}
+
 		}
 	}
 }

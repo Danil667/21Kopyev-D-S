@@ -29,12 +29,12 @@
 		private void InitializeComponent()
 		{
 			this.pictureBoxTractor = new System.Windows.Forms.PictureBox();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.groupBoxBodyType = new System.Windows.Forms.GroupBox();
 			this.labelTractorLoader = new System.Windows.Forms.Label();
 			this.labelTractor = new System.Windows.Forms.Label();
 			this.panelTractor = new System.Windows.Forms.Panel();
-			this.labelBaseColor = new System.Windows.Forms.Label();
 			this.labelDopColor = new System.Windows.Forms.Label();
+			this.labelBaseColor = new System.Windows.Forms.Label();
 			this.groupBoxColor = new System.Windows.Forms.GroupBox();
 			this.panelColor = new System.Windows.Forms.Panel();
 			this.panelGold = new System.Windows.Forms.Panel();
@@ -48,7 +48,7 @@
 			this.buttonOk = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTractor)).BeginInit();
-			this.groupBox1.SuspendLayout();
+			this.groupBoxBodyType.SuspendLayout();
 			this.panelTractor.SuspendLayout();
 			this.groupBoxColor.SuspendLayout();
 			this.panelColor.SuspendLayout();
@@ -63,16 +63,16 @@
 			this.pictureBoxTractor.TabIndex = 0;
 			this.pictureBoxTractor.TabStop = false;
 			// 
-			// groupBox1
+			// groupBoxBodyType
 			// 
-			this.groupBox1.Controls.Add(this.labelTractorLoader);
-			this.groupBox1.Controls.Add(this.labelTractor);
-			this.groupBox1.Location = new System.Drawing.Point(30, 72);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(142, 100);
-			this.groupBox1.TabIndex = 1;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Тип кузова";
+			this.groupBoxBodyType.Controls.Add(this.labelTractorLoader);
+			this.groupBoxBodyType.Controls.Add(this.labelTractor);
+			this.groupBoxBodyType.Location = new System.Drawing.Point(30, 72);
+			this.groupBoxBodyType.Name = "groupBoxBodyType";
+			this.groupBoxBodyType.Size = new System.Drawing.Size(142, 100);
+			this.groupBoxBodyType.TabIndex = 1;
+			this.groupBoxBodyType.TabStop = false;
+			this.groupBoxBodyType.Text = "Тип кузова";
 			// 
 			// labelTractorLoader
 			// 
@@ -108,18 +108,6 @@
 			this.panelTractor.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelTractor_DragDrop);
 			this.panelTractor.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelTractor_DragEnter);
 			// 
-			// labelBaseColor
-			// 
-			this.labelBaseColor.AllowDrop = true;
-			this.labelBaseColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.labelBaseColor.Location = new System.Drawing.Point(32, 155);
-			this.labelBaseColor.Name = "labelBaseColor";
-			this.labelBaseColor.Size = new System.Drawing.Size(100, 23);
-			this.labelBaseColor.TabIndex = 3;
-			this.labelBaseColor.Text = "Основной";
-			this.labelBaseColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragDrop);
-			this.labelBaseColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
-			// 
 			// labelDopColor
 			// 
 			this.labelDopColor.AllowDrop = true;
@@ -131,6 +119,18 @@
 			this.labelDopColor.Text = "Дополнительный";
 			this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
 			this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
+			// 
+			// labelBaseColor
+			// 
+			this.labelBaseColor.AllowDrop = true;
+			this.labelBaseColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.labelBaseColor.Location = new System.Drawing.Point(32, 155);
+			this.labelBaseColor.Name = "labelBaseColor";
+			this.labelBaseColor.Size = new System.Drawing.Size(100, 23);
+			this.labelBaseColor.TabIndex = 3;
+			this.labelBaseColor.Text = "Основной";
+			this.labelBaseColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragDrop);
+			this.labelBaseColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
 			// 
 			// groupBoxColor
 			// 
@@ -200,7 +200,7 @@
 			// 
 			// panelGreen
 			// 
-			this.panelGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+			this.panelGreen.BackColor = System.Drawing.Color.Green;
 			this.panelGreen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panelGreen.Location = new System.Drawing.Point(24, 62);
 			this.panelGreen.Name = "panelGreen";
@@ -220,7 +220,7 @@
 			// 
 			// panelBlue
 			// 
-			this.panelBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+			this.panelBlue.BackColor = System.Drawing.Color.Blue;
 			this.panelBlue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panelBlue.Location = new System.Drawing.Point(76, 62);
 			this.panelBlue.Name = "panelBlue";
@@ -266,11 +266,11 @@
 			this.Controls.Add(this.buttonOk);
 			this.Controls.Add(this.groupBoxColor);
 			this.Controls.Add(this.panelTractor);
-			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.groupBoxBodyType);
 			this.Name = "FormTractorConfig";
 			this.Text = "FormTractorConfig";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTractor)).EndInit();
-			this.groupBox1.ResumeLayout(false);
+			this.groupBoxBodyType.ResumeLayout(false);
 			this.panelTractor.ResumeLayout(false);
 			this.groupBoxColor.ResumeLayout(false);
 			this.panelColor.ResumeLayout(false);
@@ -281,7 +281,7 @@
 		#endregion
 
 		private System.Windows.Forms.PictureBox pictureBoxTractor;
-		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox groupBoxBodyType;
 		private System.Windows.Forms.Label labelTractorLoader;
 		private System.Windows.Forms.Label labelTractor;
 		private System.Windows.Forms.Panel panelTractor;

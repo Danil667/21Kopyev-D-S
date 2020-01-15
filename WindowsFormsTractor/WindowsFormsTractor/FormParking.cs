@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,13 @@ namespace WindowsFormsTractor
 		FormTractorConfig form;
 		MultiLevelParking parking;
 		private const int countLevel = 5;
+		private Logger logger;
+		private Logger exception;
 		public FormParking()
 		{
 			InitializeComponent();
+			logger = LogManager.GetCurrentClassLogger();
+			exception = LogManager.GetCurrentClassLogger();
 			parking = new MultiLevelParking(countLevel, pictureBoxParking.Width, pictureBoxParking.Height);
 			for (int i = 0; i < countLevel; i++)
 			{
@@ -41,21 +46,29 @@ namespace WindowsFormsTractor
 			{
 				if (maskedTextBox.Text != "")
 				{
-					var tractor = parking[listBoxLevel.SelectedIndex] - Convert.ToInt32(maskedTextBox.Text);
-					if (tractor != null)
+					try
 					{
+						var tractor = parking[listBoxLevel.SelectedIndex] - Convert.ToInt32(maskedTextBox.Text);
 						Bitmap bmp = new Bitmap(pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
 						Graphics gr = Graphics.FromImage(bmp);
-						tractor.SetPosition(20, 25, pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
+						tractor.SetPosition(10, 25, pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
 						tractor.DrawTractor(gr);
 						pictureBoxTakeTractor.Image = bmp;
+						logger.Info("Изъят трактор " + tractor.ToString() + " с места " + maskedTextBox.Text);
+						Draw();
 					}
-					else
+					catch (ParkingNotFoundException ex)
 					{
+						exception.Debug(ex.Message);
+						MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						Bitmap bmp = new Bitmap(pictureBoxTakeTractor.Width, pictureBoxTakeTractor.Height);
 						pictureBoxTakeTractor.Image = bmp;
 					}
-					Draw();
+					catch (Exception ex)
+					{
+						exception.Debug(ex.Message);
+						MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}	
 				}
 			}
 		}
@@ -73,14 +86,21 @@ namespace WindowsFormsTractor
 		{
 			if (tractor != null && listBoxLevel.SelectedIndex > -1)
 			{
-				int place = parking[listBoxLevel.SelectedIndex] + tractor;
-				if (place > -1)
+				try
 				{
+					int place = parking[listBoxLevel.SelectedIndex] + tractor;
+					logger.Info("Добавлен трактор " + tractor.ToString() + " на место " + place);
 					Draw();
 				}
-				else
+				catch (ParkingOverflowException ex)
 				{
-					MessageBox.Show("Не удалось поставить");
+					exception.Debug(ex.Message);
+					MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				catch (Exception ex)
+				{
+					exception.Debug(ex.Message);
+					MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}
@@ -88,13 +108,16 @@ namespace WindowsFormsTractor
 		{
 			if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
-				if (parking.SaveData(saveFileDialog.FileName))
+				try
 				{
+					parking.SaveData(saveFileDialog.FileName);
 					MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					logger.Info("Сохранено в файл " + saveFileDialog.FileName);
 				}
-				else
+				catch (Exception ex)
 				{
-					MessageBox.Show("Не сохранилось", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					exception.Debug(ex.Message);
+					MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}
@@ -102,13 +125,21 @@ namespace WindowsFormsTractor
 		{
 			if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
-				if (parking.LoadData(openFileDialog.FileName))
+				try
 				{
+					parking.LoadData(openFileDialog.FileName);
 					MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					logger.Info("Загружено из файла " + openFileDialog.FileName);
 				}
-				else
+				catch (ParkingOccupiedPlaceException ex)
 				{
-					MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					exception.Debug(ex.Message);
+					MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				catch (Exception ex)
+				{
+					exception.Debug(ex.Message);
+					MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузки", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 				Draw();
 			}
